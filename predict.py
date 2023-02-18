@@ -1,6 +1,7 @@
 import json
 import pandas as pd
 import os.path
+import matplotlib.pyplot as plt
 
 def extract_values():
     with open('data/args.json', 'r') as json_file:
@@ -15,6 +16,9 @@ if __name__ == "__main__":
         mileage = float(input('Enter mileage to predict: '))
     except KeyboardInterrupt:
         print('Interrupted by user')
+        exit(0)
+    if (mileage <= 0):
+        print('Mileage must be a positive number')
         exit(0)
     if (os.path.exists('data/args.json')):
         theta0, theta1 = extract_values()

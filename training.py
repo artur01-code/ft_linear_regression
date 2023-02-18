@@ -29,7 +29,7 @@ if __name__ == "__main__":
 
     # Read the dataset file and plot the data
     data = pd.read_csv('data/data.csv')
-
+    plt.scatter(data.km, data.price)
 
     # Initialize the learning rate and number of iterations
     learningRate = 0.1
@@ -60,6 +60,13 @@ if __name__ == "__main__":
     print(f"theta0: {theta0}, theta1: {theta1}")
 
     # Plot the resulting regression line
+    # plt.plot(range(9000, 250001), [theta0 * x + theta1 for x in range(9000, 250001)])
+    x = data["km"]
+    y = theta0 + (theta1 * x)
+
+    plt.plot(x, y, 'r')
     plt.scatter(data.km, data.price)
-    plt.plot(range(9000, 250001), [theta0 * x + theta1 for x in range(9000, 250001)])
+    plt.xlabel('mileage')
+    plt.ylabel('price')
+
     plt.show()

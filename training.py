@@ -27,9 +27,8 @@ def linear_regression(theta0, theta1, data, learningRate):
 if __name__ == "__main__":
 
 
-    # Read the dataset file
+    # Read the dataset file and plot the data
     data = pd.read_csv('data/data.csv')
-    plt.scatter(data.km, data.price)
 
 
     # Initialize the learning rate and number of iterations
@@ -43,11 +42,12 @@ if __name__ == "__main__":
     # normalize data
     km_max = data["km"].max()
     price_max = data["price"].max()
-    data["km"] = data["km"] / km_max
-    data["price"] = data["price"] / price_max
+    tmp_data = data.copy()
+    tmp_data["km"] = tmp_data["km"] / km_max
+    tmp_data["price"] = tmp_data["price"] / price_max
 
     for i in range(numIterations):
-        theta0, theta1 = linear_regression(theta0, theta1, data, learningRate)
+        theta0, theta1 = linear_regression(theta0, theta1, tmp_data, learningRate)
 
     # Unnormalize the resulting theta0 and theta1 values
     theta0 *= price_max
@@ -56,12 +56,10 @@ if __name__ == "__main__":
     # Save the resulting theta0 and theta1 values to a file
     np.savetxt('theta_values.txt', [theta0, theta1], delimiter=',')
 
-    # Plot the resulting regression line
-    plt.scatter(data.km, data.price)
-    plt.plot(list(range(250000, 9000)), [theta0 * x + theta1 for x in range (250000, 9000)])
-    plt.show
-
     # Print the resulting theta0 and theta1 values
     print(f"theta0: {theta0}, theta1: {theta1}")
 
-
+    # Plot the resulting regression line
+    plt.scatter(data.km, data.price)
+    plt.plot(range(9000, 250001), [theta0 * x + theta1 for x in range(9000, 250001)])
+    plt.show()

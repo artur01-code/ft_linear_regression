@@ -25,18 +25,13 @@ def linear_regression(theta0, theta1, data, learningRate):
         km = data["km"].iloc[i]
         price = data["price"].iloc[i]
 
-        # Compute the temporary values for theta0 and theta1 using np.float128
-        # if (i == 1):
-        #     print(estimatePrice(theta0, theta1, km) - price)
-        #     print(np.sum(estimatePrice(theta0, theta1, km) - price))
-        #     print("----------")
-        tmpTheta0 = learningRate * (1 / n) * np.sum(estimatePrice(theta0, theta1, km) - price) # dtype=np.float128 is used to avoid overflow 
-        tmpTheta1 = learningRate * (1 / n) * np.sum((estimatePrice(theta0, theta1, km) - price) * km) # not sure if that is still necessary
+        # Compute the temporary values for theta0 and theta1
+        tmpTheta0 = learningRate * (1 / n) * np.sum(estimatePrice(theta0, theta1, km) - price) 
+        tmpTheta1 = learningRate * (1 / n) * np.sum((estimatePrice(theta0, theta1, km) - price) * km)
 
         # Update theta0 and theta1 simultaneously
         theta0 -= tmpTheta0
         theta1 -= tmpTheta1
-    # print(theta1)
 
     return theta0, theta1
 

@@ -3,3 +3,4 @@ descent = Abstieg
 gradient_descend = Gradientenabstieg
 mileage = kilometerstand
 estimate = schätzen
+rmse = Root-mean-square deviation = Mittlere quadratische Abweichung

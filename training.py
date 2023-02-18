@@ -15,12 +15,13 @@ def linear_regression(theta0, theta1, data, learningRate):
         price = data["price"].iloc[i]
 
         # Compute the temporary values for theta0 and theta1 using np.float128
-        tmpTheta0 = learningRate * (1 / n) * np.sum(estimatePrice(theta0, theta1, km) - price, dtype=np.float128)
-        tmpTheta1 = learningRate * (1 / n) * np.sum((estimatePrice(theta0, theta1, km) - price) * km, dtype=np.float128)
+        tmpTheta0 = learningRate * (1 / n) * np.sum(estimatePrice(theta0, theta1, km) - price, dtype=np.float128) # dtype=np.float128 is used to avoid overflow 
+        tmpTheta1 = learningRate * (1 / n) * np.sum((estimatePrice(theta0, theta1, km) - price) * km, dtype=np.float128) # not sure if that is still necessary
 
         # Update theta0 and theta1 simultaneously
         theta0 -= tmpTheta0
         theta1 -= tmpTheta1
+
     return theta0, theta1
 
 
@@ -29,7 +30,6 @@ if __name__ == "__main__":
 
     # Read the dataset file and plot the data
     data = pd.read_csv('data/data.csv')
-    plt.scatter(data.km, data.price)
 
     # Initialize the learning rate and number of iterations
     learningRate = 0.1
@@ -62,7 +62,7 @@ if __name__ == "__main__":
     # Plot the resulting regression line
     # plt.plot(range(9000, 250001), [theta0 * x + theta1 for x in range(9000, 250001)])
     x = data["km"]
-    y = theta0 + (theta1 * x)
+    y = (theta1 * x) + theta0 # y = mx + b 
 
     plt.plot(x, y, 'r')
     plt.scatter(data.km, data.price)

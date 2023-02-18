@@ -57,6 +57,7 @@ if __name__ == "__main__":
     km_max = data["km"].max()
     price_max = data["price"].max()
     tmp_data = data.copy()
+
     tmp_data["km"] = tmp_data["km"] / km_max
     tmp_data["price"] = tmp_data["price"] / price_max
 

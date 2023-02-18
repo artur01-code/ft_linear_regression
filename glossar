@@ -3,4 +3,13 @@ descent = Abstieg
 gradient_descend = Gradientenabstieg
 mileage = kilometerstand
 estimate = schätzen
+accuracy = Genauigkeit
+
+
 rmse = Root-mean-square deviation = Mittlere quadratische Abweichung
+RMSE: A metric that tells us how far apart the predicted values are from the observed values in a dataset, on average.
+    The lower the RMSE, the better a model fits a dataset.
+R2: A metric that tells us the proportion of the variance in the response variable of a regression model
+    that can be explained by  the predictor variables. This value ranges from 0 to 1. The higher the R2 value, the better a model fits a dataset.
+One one hand, RMSE tells us the typical distance between the predicted value made by the regression model and the actual value.
+On the other hand, R2 tells us how well the predictor variables can explain the variation in the response variable.

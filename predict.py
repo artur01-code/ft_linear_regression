@@ -3,6 +3,17 @@ import pandas as pd
 import os.path
 import matplotlib.pyplot as plt
 
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKCYAN = '\033[96m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
 def extract_values():
     with open('data/args.json', 'r') as json_file:
         data = json.load(json_file)
@@ -12,6 +23,9 @@ def extract_values():
     return theta0, theta1
 
 if __name__ == "__main__":
+    print(bcolors.HEADER + "----------------------------------------------------------------")
+    print("Welcome to the price prediction program")
+    print("----------------------------------------------------------------" + bcolors.ENDC)
     try:
         mileage = float(input('Enter mileage to predict: '))
     except KeyboardInterrupt:
@@ -26,3 +40,4 @@ if __name__ == "__main__":
         theta0 = 0
         theta1 = 0
     print(f'price prediction: {theta0 + (theta1 * mileage)}')
+    print("\n\n")
